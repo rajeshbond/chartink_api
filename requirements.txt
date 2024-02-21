@@ -1,0 +1,9 @@
+beautifulsoup4==4.9.3
+gspread==6.0.2
+jugaad_data==0.24
+jugaad_data==0.26
+pandas==1.5.2
+protobuf==4.25.3
+pytz==2022.7.1
+pytz==2024.1
+Requests==2.31.0
