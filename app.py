@@ -1,12 +1,23 @@
+import asyncio
+from sched import scheduler
 from fastapi import FastAPI
-from chartink import trasferDataToGoogleSheet
+import pytz
+from chartink import trasferDataToGoogleSheet,marketStutusRun
 import uvicorn
+from datetime import datetime, timedelta
 
 app = FastAPI()
 
+
+
 @app.get('/')
 async def start():
-    trasferDataToGoogleSheet()
+   trasferDataToGoogleSheet()
+async def start():
+    await trasferDataToGoogleSheet()
+marketStutusRun()
+
+
 
 # Only run the server if this script is executed directly
 if __name__ == "__app__":

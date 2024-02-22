@@ -6,6 +6,9 @@ from google_sheet import clean_up, update_google_sheet
 from nse_data import updatenseIndex,maketStatus,marketAdvacneDecline
 from back_end_chart_ink import chartinkLogicBankend
 
+
+
+
 def trasferDataToGoogleSheet():
 
     URL = 'https://chartink.com/screener/process'
@@ -115,6 +118,12 @@ def trasferDataToGoogleSheet():
             print(marketStatus)    
             if(marketStatus == 'Closed'):
                 print("Market is Cloased")
-                break
+                return
         # Sleep for 5 minutes``
-        time.sleep(10)  # 300 seconds = 5 minutes
+        time.sleep(10) # 300 seconds = 5 minutes
+marketStatus = maketStatus()
+def marketStutusRun():
+    if(marketStatus == 'Closed'):
+        return
+    else:
+        trasferDataToGoogleSheet()

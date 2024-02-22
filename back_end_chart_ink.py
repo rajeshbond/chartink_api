@@ -21,6 +21,8 @@ def chartinkLogicBankend(condition,row_to_start,row_to_clean,sheetname,condition
                 data = responseData_scan1.json()
                 stock = data['data']
                 stock_list = pd.DataFrame(stock)
+                if stock_list.empty:
+                     return
                 stock_list_sorted = stock_list.sort_values(by='per_chg', ascending=False)
                 update_cell(conditionNameLocation,conditionName,sheetname="DashBoard")   
                 update_google_sheet(row_to_start,stock_list_sorted[['nsecode','per_chg','close','volume']],range_to_clear=row_to_clean,sheetname=sheetname)
