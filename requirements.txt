@@ -5,7 +5,7 @@ gspread==6.0.2
 jugaad_data==0.26
 pandas==1.5.2
 protobuf==4.25.3
-
+pip==24.0
 pytz==2024.1
 Requests==2.31.0
 uvicorn==0.27.1
