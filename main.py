@@ -23,7 +23,7 @@ from contextlib import asynccontextmanager
 app = FastAPI()
 
 
-@app.get('/')
+@app.get('/start')
 async def start():
     BackgroundTasks.add_task(trasferDataToGoogleSheet())
     return {"Message" : "Server Started"}
