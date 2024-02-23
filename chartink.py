@@ -2,7 +2,7 @@ import time
 import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
-from google_sheet import clean_up, update_google_sheet
+from google_sheet import clean_up, update_cell, update_google_sheet
 from nse_data import updatenseIndex,maketStatus,marketAdvacneDecline
 from back_end_chart_ink import chartinkLogicBankend
 
@@ -34,6 +34,8 @@ def trasferDataToGoogleSheet():
             # Scan name and condition to pass 
             # Condtion 1
             try:
+                title = "SnT Solutions©2024"
+                update_cell(cell='A3',data=title,sheetname='DashBoard')
                 # Condtion 1
                 conditionName = "MUST TRY" # change name Here
                 conditionNameLocation = "B4"
@@ -80,7 +82,7 @@ def trasferDataToGoogleSheet():
             # Condtion 5    
             try:
                 # condition 5
-                conditionName = "Blaster"
+                conditionName = "BLaster"
                 CONDITION5 = {"scan_clause": "( {cash} ( ( {cash} ( latest volume > 1 day ago max( 255 , latest volume ) and latest close >= latest open ) ) ) )" }
                 row_to_start ='U3'
                 row_to_clean = "U3:X"
