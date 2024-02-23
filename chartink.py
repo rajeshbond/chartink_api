@@ -35,9 +35,10 @@ def trasferDataToGoogleSheet():
             # Condtion 1
             try:
                 # Condtion 1
-                conditionName = "Previous Day"
+                conditionName = "MUST TRY" # change name Here
                 conditionNameLocation = "B4"
-                CONDITION1 = {"scan_clause": "( {cash} ( 1 day ago close > 1 day ago sma( 1 day ago high , 56 ) and [-1] 15 minute close > [-1] 15 minute sma( [-1] 15 minute high , 56 ) and 1 day ago low <= 1 day ago sma( 1 day ago high , 56 ) and latest close > 1 day ago high and latest close > latest supertrend( 18 , 1.5 ) and 1 day ago volume > 100000 and 1 day ago volume > 2 days ago volume and latest adx di positive( 14 ) > latest adx di negative( 14 ) and latest adx di positive( 14 ) > latest adx( 14 ) and latest adx( 14 ) > 20 ) ) "} # need to be dynamic
+                # Put condition here
+                CONDITION1 = {"scan_clause": "( {cash} ( ( {cash} ( latest macd line( 13 , 8 , 5 ) > latest macd signal( 13 , 8 , 5 ) and 1 day ago  macd line( 13 , 8 , 5 ) <= 1 day ago  macd signal( 13 , 8 , 5 ) and 1 day ago macd line( 13 , 8 , 5 ) < 1 day ago macd signal( 13 , 8 , 5 ) and latest rsi( 14 ) >= 40 and latest volume >= latest sma( latest volume , 20 ) and market cap >= 500 ) ) ) ) "}
                 row_to_start ='A3'
                 row_to_clean = 'A3:D'
                 chartinkLogicBankend(condition=CONDITION1,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
@@ -46,8 +47,8 @@ def trasferDataToGoogleSheet():
             # Condtion 2
             try:
                 # Condtion 2
-                conditionName = "Flash Sale"
-                CONDITION2 = {"scan_clause": "( {cash} ( latest sma( latest high , 56 ) > 1 day ago sma( 1 day ago high , 56 ) and latest close > latest sma( latest high , 56 ) and latest low <= latest sma( latest high , 56 ) and latest rsi( 9 ) > latest ema( latest rsi( 9 ) , 3 ) and latest wma( latest rsi( 9 ) , 21 ) < latest ema( latest rsi( 9 ) , 3 ) and 1 day ago volume > 200000 and latest close > latest supertrend( 21 , 1.5 ) and latest close > 1 day ago high ) )"} 
+                conditionName = "GROWING" # change name Here
+                CONDITION2 = {"scan_clause": "( {cash} ( ( {cash} ( quarterly close >= 1 quarter ago close * 1.07 and 1 quarter ago close >= 2 quarter ago close * 1.07 and 2 quarter ago close > 3 quarter ago close * 1.07 and 3 quarter ago close > 4 quarters ago close * 1.07 and market cap >= 750 and market cap <= 5000 and latest close > latest open and latest volume > 1 day ago volume ) ) ) ) "} 
                 row_to_start ='F3'
                 row_to_clean = "F3:I"
                 conditionNameLocation = "F4"
@@ -57,8 +58,8 @@ def trasferDataToGoogleSheet():
             # Condtion 3        
             try:
                 # condition 3
-                conditionName = "Fast Movers"
-                CONDITION3 = {"scan_clause": "( {cash} ( latest wma( latest rsi( 9 ) , 21 ) > 51 and latest rsi( 9 ) > latest ema( latest rsi( 9 ) , 5 ) and 1 day ago  rsi( 9 ) <= 1 day ago  ema( latest rsi( 9 ) , 5 ) and 1 day ago volume > 200000 and latest close > 20 and yearly debt equity ratio < 0.25 ) ) "}
+                conditionName = "B/O TRADE"
+                CONDITION3 = {"scan_clause": "( {cash} ( ( {cash} ( ( {cash} ( abs( latest high - latest low ) > abs( 1 day ago high - 1 day ago low ) and abs( latest high - latest low ) > abs( 2 days ago high - 2 days ago low ) and abs( latest high - latest low ) > abs( 3 days ago high - 3 days ago low ) and abs( latest high - latest low ) > abs( 4 days ago high - 4 days ago low ) and latest close > latest open and latest close > weekly open and latest close > monthly open and latest low > 1 day ago close - abs( 1 day ago close / 222 ) and latest adx( 14 ) >= 15 and latest adx di positive( 14 ) > latest adx di negative( 14 ) and 1 day ago  adx di positive( 14 ) <= 1 day ago  adx di negative( 14 ) ) ) ) ) ) )"}
                 row_to_start ='k3'
                 row_to_clean = "k3:N"
                 conditionNameLocation = "J4"
@@ -68,8 +69,8 @@ def trasferDataToGoogleSheet():
             # Condtion 4    
             try:
                 # condition 4
-                conditionName = "Must Try"
-                CONDITION4 = {"scan_clause": "( {cash} ( latest close > latest sma( latest high , 56 ) and 1 day ago  close <= 1 day ago  sma( latest high , 56 ) and yearly debt equity ratio < 0.4 and yearly return on capital employed percentage > 15 and latest wma( latest rsi( 9 ) , 21 ) > 1 day ago wma( latest rsi( 9 ) , 21 ) ) ) "}
+                conditionName = "STRONG UPTREND"
+                CONDITION4 = {"scan_clause": "( {cash} ( ( {cash} ( weekly rsi( 14 ) >= 60 and monthly rsi( 14 ) >= 60 and latest rsi( 14 ) >= 40 and latest rsi( 14 ) < 60 and latest rsi( 14 ) > 1 day ago rsi( 14 ) and 1 day ago rsi( 14 ) < 2 days ago rsi( 14 ) and 2 days ago rsi( 14 ) < 3 days ago rsi( 14 ) and latest volume >= 1 day ago volume and market cap >= 500 ) ) ) )" }
                 row_to_start ='P3'
                 row_to_clean = "P3:S"
                 conditionNameLocation = "N4"
@@ -79,8 +80,8 @@ def trasferDataToGoogleSheet():
             # Condtion 5    
             try:
                 # condition 5
-                conditionName = "RSI_Blast"
-                CONDITION5 = {"scan_clause": "( {cash} ( latest close > latest supertrend( 18 , 1.5 ) and latest rsi( 9 ) > latest wma( latest rsi( 9 ) , 21 ) and latest rsi( 9 ) > 65 and 1 day ago  rsi( 9 ) <= 65 and latest low <= latest sma( latest high , 56 ) and latest close > latest sma( latest high , 56 ) and 1 day ago volume > 100000 and yearly debt equity ratio < 0.4 and yearly return on capital employed percentage > 12 ) ) "}
+                conditionName = "Blaster"
+                CONDITION5 = {"scan_clause": "( {cash} ( ( {cash} ( latest volume > 1 day ago max( 255 , latest volume ) and latest close >= latest open ) ) ) )" }
                 row_to_start ='U3'
                 row_to_clean = "U3:X"
                 conditionNameLocation = "B16"
@@ -90,8 +91,8 @@ def trasferDataToGoogleSheet():
             # Condtion 6    
             try:
                 # condition 6
-                conditionName = "New Trade"
-                CONDITION6 = {"scan_clause": "( {cash} ( ( latest high - latest low ) > ( 1 day ago high - 1 day ago low ) and( latest high - latest low ) > ( 2 days ago high - 2 days ago low ) and( latest high - latest low ) > ( 3 days ago high - 3 days ago low ) and( latest high - latest low ) > ( 4 days ago high - 4 days ago low ) and( latest high - latest low ) > ( 5 days ago high - 5 days ago low ) and latest close > latest open and latest close > 1 day ago close and weekly close > weekly open and monthly close > monthly open and 1 day ago volume > 10000 and latest sma( close,20 ) > latest sma( close,50 ) and latest sma( close,50 ) > latest sma( close,200 ) and latest close > 200 ) )"}
+                conditionName = "MOMENTUM BUY"
+                CONDITION6 = {"scan_clause": "( {cash} ( ( {57960} ( ( {cash} ( latest avg true range( 14 ) > 1 day ago avg true range( 14 ) and 1 day ago avg true range( 14 ) <= 2 days ago avg true range( 14 ) and 2 days ago avg true range( 14 ) <= 3 days ago avg true range( 14 ) and 3 days ago avg true range( 14 ) <= 4 days ago avg true range( 14 ) and 4 days ago avg true range( 14 ) <= 5 days ago avg true range( 14 ) and 5 days ago avg true range( 14 ) <= 6 days ago avg true range( 14 ) and 6 days ago avg true range( 14 ) <= 7 weeks ago avg true range( 14 ) and latest volume >= 1 day ago volume and latest volume >= latest sma( latest volume , 20 ) and latest volume >= 25000 and latest close > latest open and market cap > 500 ) ) ) ) ) )"}
                 row_to_start ='Z3'
                 row_to_clean = "Z3:AC"
                 conditionNameLocation = "F16"
@@ -101,8 +102,8 @@ def trasferDataToGoogleSheet():
             # Condtion 7    
             try:
                 # condition 
-                conditionName = "Best Trade"
-                CONDITION7 = {"scan_clause": "( {cash} ( latest low < latest ema( latest high , 56 ) and latest close > latest ema( latest high , 56 ) and 1 day ago  close <= 1 day ago  ema( latest high , 56 ) and 1 day ago volume > latest ema( latest close , 20 ) * 2 and latest volume > 100000 and 1 day ago close < latest close and latest rsi( 9 ) > latest ema( latest rsi( 9 ) , 3 ) and latest ema( latest rsi( 9 ) , 3 ) > latest wma( latest rsi( 9 ) , 21 ) and weekly ema( weekly rsi( 9 ) , 3 ) > weekly wma( weekly rsi( 9 ) , 21 ) and latest close > 1 day ago high and latest rsi( 9 ) > 1 day ago rsi( 9 ) * 1.25 and latest ema( latest close , 56 ) > latest sma( latest close , 200 ) ) ) "}
+                conditionName = "FUTURE WINNER"
+                CONDITION7 = {"scan_clause": "( {cash} ( ( {cash} ( latest close >= latest ema( latest close , 20 ) and latest ema( latest close , 20 ) < latest ema( latest close , 50 ) and latest ema( latest close , 20 ) > 1 day ago ema( latest close , 20 ) and market cap >= 20 and latest volume > 1 day ago volume and latest volume > 2 days ago volume and latest close >= 20 and latest close >= 1 day ago close and latest volume >= 50000 and latest close / weekly max( 52 , weekly high ) * 100 > 75 ) ) ) ) "}
                 row_to_start ='AE3'
                 row_to_clean = "AE3:AH"
                 conditionNameLocation = "J16"
@@ -112,8 +113,8 @@ def trasferDataToGoogleSheet():
             # Condtion 8    
             try:
                 # condition 8
-                conditionName = "Important"
-                CONDITION8 = {"scan_clause": "( {cash} ( latest close > latest sma( latest close , 20 ) and 1 day ago  close <= 1 day ago  sma( latest close , 20 ) and latest close > latest sma( latest close , 50 ) and 1 day ago  close <= 1 day ago  sma( latest close , 50 ) and latest close > latest ema( latest high , 9 ) and 1 day ago  close <= 1 day ago  ema( latest high , 9 ) and latest volume > 100000 and latest volume > latest sma( latest volume , 20 ) * 1.25 and latest ema( latest rsi( 9 ) , 3 ) > latest wma( latest rsi( 9 ) , 21 ) and 1 day ago  ema( latest rsi( 9 ) , 3 )<= 1 day ago  wma( latest rsi( 9 ) , 21 ) ) ) "}
+                conditionName = "SURPRISE MOVE"
+                CONDITION8 = {"scan_clause": "( {cash} ( ( {cash} ( latest open > 1 day ago close * 1.03 and latest volume > 1 day ago volume ) ) ) )"}
                 row_to_start ='AJ3'
                 row_to_clean = "AJ3:AM"
                 conditionNameLocation = "N16"
@@ -127,9 +128,3 @@ def trasferDataToGoogleSheet():
         # Sleep for 5 minutes``
             
         time.sleep(30) # 300 seconds = 5 minutes
-marketStatus = maketStatus()
-def marketStutusRun():
-    if(marketStatus == 'Closed'):
-        return
-    else:
-        trasferDataToGoogleSheet()

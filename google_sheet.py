@@ -45,7 +45,7 @@ def update_google_sheet (row,data,range_to_clear,sheetname = 'Hello World'):
     # Clear the content of the range
     sheet.batch_clear([range_to_clear])
     sheet.update(row, values)
-    time.sleep(10)
+    # time.sleep(10)
 
     # sheet.update(row, [['Symbol', 'Percentage Change', 'Close', 'Volume']] + values)
     
@@ -53,7 +53,7 @@ def update_cell(cell,data,sheetname):
     sheet = workBook.worksheet(sheetname)
     # import time
     sheet.update(cell,[[data]])
-    time.sleep(10)  
+    # time.sleep(10)  
 
 def clean_up (range_to_clear,sheetname = 'Hello World'):
     sheet = workBook.worksheet(sheetname)    
