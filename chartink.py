@@ -20,7 +20,8 @@ def trasferDataToGoogleSheet():
 
         marketStatus = maketStatus()
         if(marketStatus == 'Closed'):
-            time.sleep(120)
+            print(f"I am checking market condition {marketStatus}")
+            time.sleep(300)
             trasferDataToGoogleSheet()
 
         updatenseIndex()
@@ -131,4 +132,4 @@ def trasferDataToGoogleSheet():
                 return
         # Sleep for 5 minutes``
             
-        time.sleep(30) # 300 seconds = 5 minutes
+        time.sleep(10) # 300 seconds = 5 minutes

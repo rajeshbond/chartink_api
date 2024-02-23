@@ -1,21 +1,32 @@
-import asyncio
+
 from sched import scheduler
-from fastapi import FastAPI
-import pytz
+from fastapi import FastAPI,BackgroundTasks
+import time
 from chartink import trasferDataToGoogleSheet
-import uvicorn
 from datetime import datetime, timedelta
+import asyncio
+from contextlib import asynccontextmanager
+
+from nse_data import maketStatus
+
+
 
 app = FastAPI()
 
 
-
 @app.get('/')
 async def start():
-   trasferDataToGoogleSheet()
-async def start():
-    await trasferDataToGoogleSheet()
-trasferDataToGoogleSheet()
+    BackgroundTasks.add_task(trasferDataToGoogleSheet())
+    return {"Message" : "Server Started"}
+
+
+
+# @app.get('/')
+# async def start():
+#    trasferDataToGoogleSheet()
+# async def start():
+#     await trasferDataToGoogleSheet()
+# trasferDataToGoogleSheet()
 
 
 
