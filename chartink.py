@@ -15,9 +15,14 @@ def trasferDataToGoogleSheet():
 
     # Initialize prev_data as None before the loop
     print("started")
+   
     while True:
 
         marketStatus = maketStatus()
+        if(marketStatus == 'Closed'):
+            time.sleep(120)
+            trasferDataToGoogleSheet()
+
         updatenseIndex()
         marketAdvacneDecline()
         with requests.session() as s:
@@ -120,7 +125,8 @@ def trasferDataToGoogleSheet():
                 print("Market is Cloased")
                 return
         # Sleep for 5 minutes``
-        time.sleep(10) # 300 seconds = 5 minutes
+            
+        time.sleep(30) # 300 seconds = 5 minutes
 marketStatus = maketStatus()
 def marketStutusRun():
     if(marketStatus == 'Closed'):

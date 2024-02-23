@@ -22,6 +22,7 @@ def chartinkLogicBankend(condition,row_to_start,row_to_clean,sheetname,condition
                 stock = data['data']
                 stock_list = pd.DataFrame(stock)
                 if stock_list.empty:
+                     clean_up(range_to_clear=row_to_clean,sheetname=sheetname)
                      return
                 stock_list_sorted = stock_list.sort_values(by='per_chg', ascending=False)
                 update_cell(conditionNameLocation,conditionName,sheetname="DashBoard")   
