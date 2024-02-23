@@ -35,7 +35,9 @@ def trasferDataToGoogleSheet():
             # Condtion 1
             try:
                 title = "SnT Solutions©2024"
+                sub_title = "SnT Solution - 8080105062"
                 update_cell(cell='A3',data=title,sheetname='DashBoard')
+                update_cell(cell='A28',data=sub_title,sheetname='DashBoard')
                 # Condtion 1
                 conditionName = "MUST TRY" # change name Here
                 conditionNameLocation = "B4"
