@@ -5,6 +5,7 @@ from chartink import trasferDataToGoogleSheet
 from datetime import datetime, timedelta
 import asyncio
 from contextlib import asynccontextmanager
+from fastapi.responses import HTMLResponse
 
 
 # @asynccontextmanager
@@ -22,7 +23,11 @@ from contextlib import asynccontextmanager
 
 app = FastAPI()
 
-
+@app.get("/", response_class=HTMLResponse)
+async def under_construction():
+    with open("templates/under_construction.html", "r") as file:
+        return file.read()
+    
 @app.get('/start')
 async def start():
     BackgroundTasks.add_task(trasferDataToGoogleSheet())
