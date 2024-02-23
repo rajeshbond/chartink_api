@@ -17,7 +17,7 @@ def chartinkLogicBankend(condition,row_to_start,row_to_clean,sheetname,condition
             soup = bs(rawData.content,"lxml")
             meta = soup.find('meta', {"name":"csrf-token"})['content']
             header = {"X-Csrf-Token": meta}
-            responseData_scan1 = s.post(url=URL , headers= header , data=condition)
+            responseData_scan1 = s.post(url=URL , headers= header , data=condition, timeout= 60)
             if responseData_scan1.content:
                 data = responseData_scan1.json()
                 stock = data['data']

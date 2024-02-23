@@ -11,7 +11,7 @@ from back_end_chart_ink import chartinkLogicBankend
 
 def trasferDataToGoogleSheet():
 
-    URL = 'https://chartink.com/screener/process'
+    # URL = 'https://chartink.com/screener/process'
 
     # Initialize prev_data as None before the loop
     print("started")
