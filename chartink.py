@@ -18,9 +18,10 @@ def trasferDataToGoogleSheet():
    
     while True:
 
-        marketStatus = maketStatus()
-        if(marketStatus == 'Closed'):
-            print(f"I am checking market condition {marketStatus}")
+        # marketStatus = maketStatus()
+        market = "Open"
+        if(market == 'Closed'):
+            print(f"I am checking market condition {market}")
             time.sleep(300)
             trasferDataToGoogleSheet()
 
@@ -126,8 +127,8 @@ def trasferDataToGoogleSheet():
                 chartinkLogicBankend(condition=CONDITION8,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
             except Exception as e:
                 print(e)
-            print(marketStatus)    
-            if(marketStatus == 'Closed'):
+            print(market)    
+            if(market == 'Closed'):
                 print("Market is Cloased")
                 return
         # Sleep for 5 minutes``
