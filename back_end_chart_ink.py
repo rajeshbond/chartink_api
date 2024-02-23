@@ -8,7 +8,7 @@ from pprint import pprint
 from google_sheet import clean_up, update_google_sheet,update_cell
 
 URL = 'https://chartink.com/screener/process'
-def chartinkLogicBankend(condition,row_to_start,row_to_clean,sheetname,conditionName,conditionNameLocation):
+async def  chartinkLogicBankend(condition,row_to_start,row_to_clean,sheetname,conditionName,conditionNameLocation):
     # print(conditionName)
     # print(conditionNameLocation)
     try:
@@ -17,7 +17,7 @@ def chartinkLogicBankend(condition,row_to_start,row_to_clean,sheetname,condition
             soup = bs(rawData.content,"lxml")
             meta = soup.find('meta', {"name":"csrf-token"})['content']
             header = {"X-Csrf-Token": meta}
-            responseData_scan1 = s.post(url=URL , headers= header , data=condition, timeout=300)
+            responseData_scan1 = await s.post(url=URL , headers= header , data=condition, timeout=10000)
             if responseData_scan1.content:
                 data = responseData_scan1.json()
                 stock = data['data']
