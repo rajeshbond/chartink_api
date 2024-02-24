@@ -1,11 +1,13 @@
 
 
-from fastapi import FastAPI,BackgroundTasks
+from fastapi import FastAPI,BackgroundTasks, Request
 from chartink import trasferDataToGoogleSheet
 from datetime import datetime, timedelta
 import asyncio
 from contextlib import asynccontextmanager
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 
 # @asynccontextmanager
@@ -21,13 +23,19 @@ from fastapi.responses import HTMLResponse
 #     print("Hello")
 #     return {"message": "started"}
 
+# Mount the static directory containing your CSS and image files
+
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Load HTML templates
+templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
-async def under_construction():
-    with open("templates/under_construction.html", "r") as file:
-        return file.read()
-    
+async def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+
 @app.get('/start')
 async def start():
     BackgroundTasks.add_task(trasferDataToGoogleSheet())

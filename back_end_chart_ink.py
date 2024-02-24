@@ -23,6 +23,7 @@ def  chartinkLogicBankend(condition,row_to_start,row_to_clean,sheetname,conditio
                 stock = data['data']
                 stock_list = pd.DataFrame(stock)
                 if stock_list.empty:
+                     time.sleep(10)
                      clean_up(range_to_clear=row_to_clean,sheetname=sheetname)
                      return
               
@@ -31,7 +32,6 @@ def  chartinkLogicBankend(condition,row_to_start,row_to_clean,sheetname,conditio
                 update_google_sheet(row_to_start,stock_list_sorted[['nsecode','per_chg','close','volume']],range_to_clear=row_to_clean,sheetname=sheetname)
                 
     except Exception as e:
-            clean_up(range_to_clear=row_to_clean)
-            print(e)
+            print(f"chartinkLogicBankend -------------->>>>{e}")
 
             

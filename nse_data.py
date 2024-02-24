@@ -16,9 +16,9 @@ def updatenseIndex():
         nseData.drop(columns=columns_to_drop, inplace=True)
         row_to_start ='A2'
         update_google_sheet(row_to_start,nseData[['indexSymbol','last','percentChange',]],"A2:D",'nsedata')
-        # print(f"updatednseIndix -- {nseData}")
     except Exception as e:
-        print(e)
+        print(f"update_google_sheet  -------------->>>>{e}")
+
 def maketStatus():
     try:
         n = NSELive()
@@ -28,16 +28,18 @@ def maketStatus():
         # print(f"MarketStatus --- {data}")
         return data
     except Exception as e:
-        print(e)
+        print(f"maketStatus  -------------->>>>{e}")
 def marketAdvacneDecline():
     try:
         n = NSELive()
         status = n.all_indices()
         data = [status['advances'], status['declines']]
         row_to_start = 'C2'
+        time.sleep(0.1)
         update_cell(cell=row_to_start,data=status['advances'],sheetname='DashBoard')
         row_to_start = 'D2'
+        time.sleep(0.1)
         update_cell(cell=row_to_start,data=status['declines'],sheetname='DashBoard')
     except Exception as e:
-        print(e)
+        print(f"marketAdvacneDecline  -------------->>>>{e}")
 

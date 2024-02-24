@@ -35,29 +35,46 @@ worksheet_list = map(lambda x:x.title , workBook.worksheets())
 #     sheet = workBook.add_worksheet(new_worksheets_name, rows=10, cols=10)
 
 # sheet.clear() 
-# sheet.update(f'A1:C{len(values)}', values)
 
 def update_google_sheet (row,data,range_to_clear,sheetname = 'Hello World'):
-    sheet = workBook.worksheet(sheetname)
-    values = data.values.tolist()
-    # sheet.clear()
-    # range_to_clear = 'F3:I24'
-    # Clear the content of the range
-    sheet.batch_clear([range_to_clear])
-    sheet.update(row, values)
+    try:
+        sheet = workBook.worksheet(sheetname)
+        values = data.values.tolist()
+        # sheet.clear()
+        # range_to_clear = 'F3:I24'
+        # Clear the content of the range
+        time.sleep(0.5)
+        sheet.batch_clear([range_to_clear])
+        time.sleep(0.05)
+        sheet.update(row, values)
+    except Exception as e:
+     print(f"update_google_sheet  -------------->>>>{e}")
+
+
     # time.sleep(10)
 
     # sheet.update(row, [['Symbol', 'Percentage Change', 'Close', 'Volume']] + values)
+
     
 def update_cell(cell,data,sheetname):
-    sheet = workBook.worksheet(sheetname)
-    # import time
-    sheet.update(cell,[[data]])
-    # time.sleep(10)  
+    try:
+        sheet = workBook.worksheet(sheetname)
+        # import time
+        time.sleep(1)
+        sheet.update(cell,[[data]])
+    except Exception as e:
+     print(f"update cell  -------------->>>>{e}")
+
+
 
 def clean_up (range_to_clear,sheetname = 'Hello World'):
-    sheet = workBook.worksheet(sheetname)    
-    sheet.batch_clear([range_to_clear])
+    try:
+        sheet = workBook.worksheet(sheetname)  
+        time.sleep(1)  
+        sheet.batch_clear([range_to_clear])
+    except Exception as e:
+     print(f"clean_up  -------------->>>>{e}")
+
 
 
 

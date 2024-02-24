@@ -130,7 +130,7 @@ def trasferDataToGoogleSheet():
         print(market)    
         if(market == 'Closed'):
             print("Market is Cloased")
-            return
+            break
     # Sleep for 5 minutes``
         
-    time.sleep(10) # 300 seconds = 5 minutes
+    time.sleep(100) # 300 seconds = 5 minutes
