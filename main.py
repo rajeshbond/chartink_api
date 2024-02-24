@@ -40,8 +40,9 @@ async def st():
 
 @app.get('/start')
 async def start():
-    BackgroundTasks.add_task(trasferDataToGoogleSheet())
-    return {"Message" : "Server Started"}
+    trasferDataToGoogleSheet()
+    return{"Message" : 'Market is close'}
+    
 
 
 if __name__ == "__main__":

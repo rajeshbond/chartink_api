@@ -18,23 +18,11 @@ def trasferDataToGoogleSheet():
    
     while True:
 
-        # marketStatus = maketStatus()
-        market = "Open"
-        if(market == 'Closed'):
-            print(f"I am checking market condition {market}")
-            time.sleep(300)
-            trasferDataToGoogleSheet()
-
+        market = maketStatus()
+       
         updatenseIndex()
         marketAdvacneDecline()
-        # with requests.session() as s:
-        #     rawData = s.get(URL)
-        #     soup = bs(rawData.content,"lxml")
-        #     meta = soup.find('meta', {"name":"csrf-token"})['content']
-        #     header = {"X-Csrf-Token": meta}
-            
-            # Scan name and condition to pass 
-            # Condtion 1
+ 
         try:
             title = "SnT Solutions"
             sub_title = "©SnT Solution - 8080105062"
@@ -127,10 +115,10 @@ def trasferDataToGoogleSheet():
             chartinkLogicBankend(condition=CONDITION8,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
         except Exception as e:
             print(e)
-        print(market)    
-        if(market == 'Closed'):
-            print("Market is Cloased")
-            break
+        # print(market)    
+        if(market == 'Closed' or market == "Close"):
+            print(f"Market is {market}")
+            return {"Market Status" : "hello"}
     # Sleep for 5 minutes``
         
     time.sleep(100) # 300 seconds = 5 minutes
