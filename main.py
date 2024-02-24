@@ -26,7 +26,7 @@ from fastapi.templating import Jinja2Templates
 # Mount the static directory containing your CSS and image files
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Load HTML templates
 templates = Jinja2Templates(directory="templates")
