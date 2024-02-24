@@ -31,10 +31,13 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # Load HTML templates
 templates = Jinja2Templates(directory="templates")
 
-@app.get("/", response_class=HTMLResponse)
-async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+# @app.get("/", response_class=HTMLResponse)
+# async def read_root(request: Request):
+#     return templates.TemplateResponse("index.html", {"request": request})
+@app.get('/')
+async def st():
 
+    return {"Message" : "Hello"}
 
 @app.get('/start')
 async def start():
