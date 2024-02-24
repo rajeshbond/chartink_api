@@ -5,10 +5,10 @@ from google_sheet import update_google_sheet,update_cell
 
 
 
-async def updatenseIndex():
+def updatenseIndex():
     try:
         n = NSELive()
-        all_indices = await n.all_indices()
+        all_indices = n.all_indices()
 
         nseData = pd.DataFrame(all_indices['data'])
         columns_to_keep = ['indexSymbol', 'last', 'percentChange']
@@ -19,20 +19,20 @@ async def updatenseIndex():
         # print(f"updatednseIndix -- {nseData}")
     except Exception as e:
         print(e)
-async def maketStatus():
+def maketStatus():
     try:
         n = NSELive()
-        status = await n.market_status()
+        status = n.market_status()
         data =status['marketState'][0]['marketStatus']
         update_cell(cell='B2',data=data,sheetname='DashBoard')
         # print(f"MarketStatus --- {data}")
         return data
     except Exception as e:
         print(e)
-async def marketAdvacneDecline():
+def marketAdvacneDecline():
     try:
         n = NSELive()
-        status = await n.all_indices()
+        status = n.all_indices()
         data = [status['advances'], status['declines']]
         row_to_start = 'C2'
         update_cell(cell=row_to_start,data=status['advances'],sheetname='DashBoard')

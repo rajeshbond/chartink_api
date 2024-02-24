@@ -9,7 +9,7 @@ from back_end_chart_ink import chartinkLogicBankend
 
 
 
-async def trasferDataToGoogleSheet():
+def trasferDataToGoogleSheet():
 
     URL = 'https://chartink.com/screener/process'
 
@@ -23,9 +23,9 @@ async def trasferDataToGoogleSheet():
         if(market == 'Closed'):
             print(f"I am checking market condition {market}")
             time.sleep(300)
-            await trasferDataToGoogleSheet()
+            trasferDataToGoogleSheet()
 
-        await updatenseIndex()
+        updatenseIndex()
         marketAdvacneDecline()
         # with requests.session() as s:
         #     rawData = s.get(URL)
@@ -38,8 +38,8 @@ async def trasferDataToGoogleSheet():
         try:
             title = "SnT Solutions"
             sub_title = "©SnT Solution - 8080105062"
-            await update_cell(cell='A3',data=title,sheetname='DashBoard')
-            await update_cell(cell='A28',data=sub_title,sheetname='DashBoard')
+            update_cell(cell='A3',data=title,sheetname='DashBoard')
+            update_cell(cell='A28',data=sub_title,sheetname='DashBoard')
             # Condtion 1
             conditionName = "MUST TRY" # change name Here
             conditionNameLocation = "B4"
@@ -47,7 +47,7 @@ async def trasferDataToGoogleSheet():
             CONDITION1 = {"scan_clause": "( {cash} ( ( {cash} ( latest macd line( 13 , 8 , 5 ) > latest macd signal( 13 , 8 , 5 ) and 1 day ago  macd line( 13 , 8 , 5 ) <= 1 day ago  macd signal( 13 , 8 , 5 ) and 1 day ago macd line( 13 , 8 , 5 ) < 1 day ago macd signal( 13 , 8 , 5 ) and latest rsi( 14 ) >= 40 and latest volume >= latest sma( latest volume , 20 ) and market cap >= 500 ) ) ) ) "}
             row_to_start ='A3'
             row_to_clean = 'A3:D'
-            await chartinkLogicBankend(condition=CONDITION1,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
+            chartinkLogicBankend(condition=CONDITION1,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
         except Exception as e:
             print(e)
         # Condtion 2
@@ -58,7 +58,7 @@ async def trasferDataToGoogleSheet():
             row_to_start ='F3'
             row_to_clean = "F3:I"
             conditionNameLocation = "F4"
-            await chartinkLogicBankend(condition=CONDITION2,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
+            chartinkLogicBankend(condition=CONDITION2,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
         except Exception as e:
             print(e)
         # Condtion 3        
@@ -69,7 +69,7 @@ async def trasferDataToGoogleSheet():
             row_to_start ='k3'
             row_to_clean = "k3:N"
             conditionNameLocation = "J4"
-            await chartinkLogicBankend(condition=CONDITION3,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
+            chartinkLogicBankend(condition=CONDITION3,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
         except Exception as e:
             print(e)
         # Condtion 4    
@@ -80,7 +80,7 @@ async def trasferDataToGoogleSheet():
             row_to_start ='P3'
             row_to_clean = "P3:S"
             conditionNameLocation = "N4"
-            await chartinkLogicBankend(condition=CONDITION4,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
+            chartinkLogicBankend(condition=CONDITION4,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
         except Exception as e:
             print(e) 
         # Condtion 5    
@@ -91,7 +91,7 @@ async def trasferDataToGoogleSheet():
             row_to_start ='U3'
             row_to_clean = "U3:X"
             conditionNameLocation = "B16"
-            await chartinkLogicBankend(condition=CONDITION4,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
+            chartinkLogicBankend(condition=CONDITION4,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
         except Exception as e:
             print(e)
         # Condtion 6    
@@ -102,7 +102,7 @@ async def trasferDataToGoogleSheet():
             row_to_start ='Z3'
             row_to_clean = "Z3:AC"
             conditionNameLocation = "F16"
-            await chartinkLogicBankend(condition=CONDITION6,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
+            chartinkLogicBankend(condition=CONDITION6,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
         except Exception as e:
             print(e)
         # Condtion 7    
@@ -113,7 +113,7 @@ async def trasferDataToGoogleSheet():
             row_to_start ='AE3'
             row_to_clean = "AE3:AH"
             conditionNameLocation = "J16"
-            await chartinkLogicBankend(condition=CONDITION7,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
+            chartinkLogicBankend(condition=CONDITION7,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
         except Exception as e:
             print(e)
         # Condtion 8    
@@ -124,7 +124,7 @@ async def trasferDataToGoogleSheet():
             row_to_start ='AJ3'
             row_to_clean = "AJ3:AM"
             conditionNameLocation = "N16"
-            await chartinkLogicBankend(condition=CONDITION8,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
+            chartinkLogicBankend(condition=CONDITION8,row_to_start=row_to_start,row_to_clean= row_to_clean,sheetname='Hello World',conditionName=conditionName,conditionNameLocation=conditionNameLocation)
         except Exception as e:
             print(e)
         print(market)    

@@ -37,27 +37,27 @@ worksheet_list = map(lambda x:x.title , workBook.worksheets())
 # sheet.clear() 
 # sheet.update(f'A1:C{len(values)}', values)
 
-async def update_google_sheet (row,data,range_to_clear,sheetname = 'Hello World'):
+def update_google_sheet (row,data,range_to_clear,sheetname = 'Hello World'):
     sheet = workBook.worksheet(sheetname)
     values = data.values.tolist()
     # sheet.clear()
     # range_to_clear = 'F3:I24'
     # Clear the content of the range
-    await sheet.batch_clear([range_to_clear])
-    await sheet.update(row, values)
+    sheet.batch_clear([range_to_clear])
+    sheet.update(row, values)
     # time.sleep(10)
 
     # sheet.update(row, [['Symbol', 'Percentage Change', 'Close', 'Volume']] + values)
     
-async def update_cell(cell,data,sheetname):
+def update_cell(cell,data,sheetname):
     sheet = workBook.worksheet(sheetname)
     # import time
-    await sheet.update(cell,[[data]])
+    sheet.update(cell,[[data]])
     # time.sleep(10)  
 
-async def clean_up (range_to_clear,sheetname = 'Hello World'):
+def clean_up (range_to_clear,sheetname = 'Hello World'):
     sheet = workBook.worksheet(sheetname)    
-    await sheet.batch_clear([range_to_clear])
+    sheet.batch_clear([range_to_clear])
 
 
 
