@@ -40,7 +40,10 @@ async def st():
 
 @app.get('/start')
 async def start():
-    trasferDataToGoogleSheet()
+    try:
+        trasferDataToGoogleSheet()
+    except Exception as e:
+        print(f"Exception ----> {e}")
     return{"Message" : 'Market is close'}
     
 
