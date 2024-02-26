@@ -24,7 +24,7 @@ def trasferDataToGoogleSheet():
         marketAdvacneDecline()
  
         try:
-            title = "SnT Solutions"
+            title = "Compounding Funda"
             sub_title = "©SnT Solution - 8080105062"
             update_cell(cell='A3',data=title,sheetname='DashBoard')
             update_cell(cell='A28',data=sub_title,sheetname='DashBoard')
